@@ -183,7 +183,14 @@ if [ ${ACTION} == "test" ]; then
   export ALL_IP
   export ns
 
-  TEST_CMD=`echo -e -n $TEST_CMD_BASE`
+  if [ ${#TEST_CMD_BASE} -gt 0 ]; then
+    last_char=${TEST_CMD_BASE: -2}
+    if [ "$last_char" = '\n' ]; then
+      TEST_CMD=${TEST_CMD_BASE%??}
+    else
+      TEST_CMD=${TEST_CMD_BASE}
+    fi
+  fi
 
   echo $TEST_CMD
   export TEST_CMD
