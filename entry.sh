@@ -182,12 +182,9 @@ if [ ${ACTION} == "test" ]; then
 
   export ALL_IP
   export ns
-  is_mvn_cmd=`echo $TEST_CMD_BASE | grep "mvn"`
-  if [ ! -z "$is_mvn_cmd" ]; then
-      TEST_CMD="$TEST_CMD_BASE -DALL_IP=${ALL_IP}"
-  else
-      TEST_CMD=$TEST_CMD_BASE
-  fi
+
+  TEST_CMD=$TEST_CMD_BASE
+
   echo $TEST_CMD
   export TEST_CMD
 
