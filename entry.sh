@@ -183,19 +183,11 @@ if [ ${ACTION} == "test" ]; then
   export ALL_IP
   export ns
 
-  if [ ${#TEST_CMD_BASE} -gt 0 ]; then
-    last_char=${TEST_CMD_BASE: -2}
-    if [ "$last_char" = '\n' ]; then
-      TEST_CMD=${TEST_CMD_BASE%??}
-    else
-      TEST_CMD=${TEST_CMD_BASE}
-    fi
-  fi
-
   echo $TEST_CMD
   export TEST_CMD
 
   envsubst < ./testpod.yaml > ./testpod-${ns}.yaml
+  sed -i -n '/./p' ./testpod.yaml
   cat ./testpod-${ns}.yaml
 
   kubectl apply -f ./testpod-${ns}.yaml
