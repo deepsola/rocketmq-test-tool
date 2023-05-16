@@ -149,7 +149,8 @@ spec:
     - name: ALL_IP
       value: ${ALL_IP}
     - name: CMD
-      value: ${TEST_CMD}
+      value: |
+${TEST_CMD}
 '
 
 echo -e "${TEST_POD_TEMPLATE}" > ./testpod.yaml
@@ -183,7 +184,7 @@ if [ ${ACTION} == "test" ]; then
   export ALL_IP
   export ns
 
-  TEST_CMD=$TEST_CMD_BASE
+  TEST_CMD=`echo "${$TEST_CMD_BASE}" | sed -s 's/^/        /g'`
 
   echo $TEST_CMD
   export TEST_CMD
