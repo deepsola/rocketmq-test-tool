@@ -183,6 +183,8 @@ if [ ${ACTION} == "test" ]; then
   export ALL_IP
   export ns
 
+  TEST_CMD=$TEST_CMD_BASE
+
   echo $TEST_CMD
   export TEST_CMD
 
