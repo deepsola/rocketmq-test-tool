@@ -146,10 +146,10 @@ spec:
       value: ${TEST_CODE_BRANCH}
     - name: CODE_PATH
       value: ${TEST_CODE_PATH}
-    - name: CMD
-      value: ${TEST_CMD}
     - name: ALL_IP
       value: ${ALL_IP}
+    - name: CMD
+      value: ${TEST_CMD}
 '
 
 echo -e "${TEST_POD_TEMPLATE}" > ./testpod.yaml
@@ -187,7 +187,6 @@ if [ ${ACTION} == "test" ]; then
   export TEST_CMD
 
   envsubst < ./testpod.yaml > ./testpod-${ns}.yaml
-  sed -i -n '/./p' ./testpod.yaml
   cat ./testpod-${ns}.yaml
 
   kubectl apply -f ./testpod-${ns}.yaml
