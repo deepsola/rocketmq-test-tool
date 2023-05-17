@@ -30,5 +30,5 @@ sh $script_name > /root/testlog.txt 2>&1
 res=$?
 # wait for result collect
 touch /root/testdone
-sleep 6000
+sleep 60
 exit $res
