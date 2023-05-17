@@ -212,17 +212,15 @@ if [ ${ACTION} == "test" ]; then
       test_done=`kubectl exec -i ${test_pod_name} -n ${ns} -- ls /root | grep testdone`
       if [ ! -z "$test_done" ]; then
         echo "Test status: test done"
-        if [ ! -z "$is_mvn_cmd" ]; then
-          if [ ! -d "./test_report" ]; then
-            echo "Copy test reports"
-            kubectl cp --retries=10 ${test_pod_name}:/root/testlog.txt testlog.txt -n ${ns}
-            mkdir -p test_report
-            cd test_report
-            kubectl cp --retries=10 ${test_pod_name}:/root/code/${TEST_CODE_PATH}/target/surefire-reports/. . -n ${ns}
-            rm -rf *.txt
-            ls
-            cd -
-          fi
+        if [ ! -d "./test_report" ]; then
+          echo "Copy test reports"
+          kubectl cp --retries=10 ${test_pod_name}:/root/testlog.txt testlog.txt -n ${ns}
+          mkdir -p test_report
+          cd test_report
+          kubectl cp --retries=10 ${test_pod_name}:/root/code/${TEST_CODE_PATH}/target/surefire-reports/. . -n ${ns}
+          rm -rf *.txt
+          ls
+          cd -
         fi
       fi
   done
