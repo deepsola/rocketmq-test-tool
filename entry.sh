@@ -184,7 +184,7 @@ if [ ${ACTION} == "test" ]; then
   export ALL_IP
   export ns
 
-  TEST_CMD=`echo "${$TEST_CMD_BASE}" | sed -s 's/^/        /g'`
+  TEST_CMD=`echo "${TEST_CMD_BASE}" | sed -s 's/^/        /g'`
 
   echo $TEST_CMD
   export TEST_CMD
