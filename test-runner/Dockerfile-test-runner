@@ -98,7 +98,7 @@ RUN npm install -g mocha-junit-reporter && \
     ln -s /root/node-v10.16.0-linux-x64/bin/mocha /bin/mocha
 
 RUN rpm -Uvh https://packages.microsoft.com/config/centos/7/packages-microsoft-prod.rpm && \
-    yum install -y dotnet-sdk-3.1
+    yum install -y dotnet-sdk-7.0
 
 RUN echo "export PYTHONPATH=$PYTHONPATH:/root/code/" >> /root/.bashrc
 
